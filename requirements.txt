@@ -1,0 +1,4 @@
+fastapi
+Pillow
+python-multipart
+aiofiles

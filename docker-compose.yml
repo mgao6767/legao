@@ -1,0 +1,13 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+    restart: always
+    container_name: legao-backend
+    environment:
+      MODULE_NAME: app.main
+      SERVER_HOST: http://localhost
