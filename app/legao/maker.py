@@ -1,5 +1,6 @@
 import os
-from PIL import Image, PILLOW_VERSION
+from PIL import Image
+import PIL
 from collections import ChainMap
 from itertools import chain
 from ..legao import DIR, UPLOAD_DIR
