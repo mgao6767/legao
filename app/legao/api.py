@@ -37,11 +37,17 @@ async def receive_image(bg_tasks: BackgroundTasks, file: UploadFile = File(...))
     md5 = hashlib.md5(contents).hexdigest()
     _, ext = os.path.splitext(file.filename)
     file_path = os.path.join(UPLOAD_DIR, "".join([md5, ext]))
+
+    # Vérifiez si le répertoire UPLOAD_DIR existe, sinon, créez-le
+    if not os.path.exists(UPLOAD_DIR):
+        os.makedirs(UPLOAD_DIR)
+
     with open(file_path, 'wb') as f:
         f.write(contents)
     imagesUploaded, imagesMade = stats()
     bg_tasks.add_task(updateStats, imagesUploaded+1, imagesMade)
     return {'status': 'received', 'md5': md5+ext, 'imagesUploaded': imagesUploaded}
+
 
 
 class Params(BaseModel):
